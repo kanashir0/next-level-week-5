@@ -1,30 +1,11 @@
-// Secret code: missaoespacial
-
 import express from "express";
+
+import "./database"; // Importing database from database/ folder
+import { routes } from "./routes"; // import routes from routes/ folder
 
 const app = express();
 
-/**
- * GET = Used for searches
- * POST = Used for creations
- * PUT = Used to changes
- * DELETE = Used for deletions
- * PATCH = Used to change one specific information
- */
-
-// response.send() -> Sends a message to the client side
-// response.json() -> Sends a json to the client side
-
-app.get('/', (request, response) => {
-    return response.json({
-        message: "Olá NLW #5",
-    });
-});
-
-app.post("/", (request, response) => {
-    return response.json({
-        message: "User saved sucessfully",
-    })
-})
+app.use(express.json()); // enabling json to be received
+app.use(routes); // using all routes from routes/
 
 app.listen(3333, () => console.log("Server is running on port 3333"));
